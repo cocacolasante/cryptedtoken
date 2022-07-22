@@ -17,6 +17,9 @@ contract CryptedToken {
         symbol = _symbol;
         totalSupply = _totalSupply * decimals;
         balances[msg.sender] = totalSupply; // sends total supply to owner
+        admin = msg.sender;
+        marketingWallet;
+        userFundWallet;
 
     }
 
@@ -49,9 +52,19 @@ contract CryptedToken {
 
     function _transfer(address _to, address _from, uint amount) internal {
         require(_to != address(0)); // makes sure the to address isnt the contract address
+
+        // charge the tax
+        balances[marketingWallet] += (marketingFee * amount ) / 100;
+        balances[userFundWallet] += (userFundFee * amount ) / 100;
+        balances[admin] += (devFee * amount) /100;
+
+
+
          // transfer the tokens
         balances[_from] -= amount;
         balances[_to] += amount;
+
+
 
         //emit transfer event
         emit Transfer(_to, _from, amount);
@@ -75,8 +88,13 @@ contract CryptedToken {
         require(amount < balances[_from]);
         require(amount < allowance[_to][msg.sender]);
 
+        
+
         // reset the allowances
         allowance[_from][msg.sender] = allowance[_from][msg.sender] - amount;
+
+        // call transfer helper function
+        _transfer(_from, _to, amount);
 
         //emit the transfer event
         emit Transfer(_from, _to, amount);
@@ -91,7 +109,15 @@ contract CryptedToken {
 
     // dev and marketing fees
 
-    uint fees;
+    address admin;
+    address marketingWallet;
+    address userFundWallet;
+
+    uint devFee = 3;
+    uint marketingFee = 3;
+    uint userFundFee = 4;
+
+    uint totalFees;
 
 
 }
