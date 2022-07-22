@@ -7,6 +7,16 @@ contract CryptedToken {
     uint256 decimals = 18;
     uint totalSupply = 10000000;
 
+    // constructor function
+
+    constructor(string memory _name, string memory _symbol, uint _totalSupply) {
+        name = _name;
+        symbol = _symbol;
+        totalSupply = _totalSupply * decimals;
+        balanceOf[msg.sender];
+
+    }
+
     //mapping of address to uint to get balance of each account
     mapping(address => uint) public balanceOf;
     mapping(address => mapping(address => uint)) public allowance;
