@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
+import "hardhat/console.sol";
+
 contract CryptedToken {
     string name = 'Crypted Token';
     string symbol = 'CT';
     uint256 decimals = 18;
     uint totalSupply = 10000000;
+    bool nftIsStaked;
 
     // constructor function
 
@@ -13,7 +16,7 @@ contract CryptedToken {
         name = _name;
         symbol = _symbol;
         totalSupply = _totalSupply * decimals;
-        balanceOf[msg.sender];
+        balanceOf[msg.sender] = totalSupply; // sends total supply to owner
 
     }
 
@@ -57,7 +60,7 @@ contract CryptedToken {
 
     // approval for delegated trading
 
-    function approve(address _spender, uint amount ) public returns(bool success){
+    function approve(address _spender, uint256 amount ) public returns(bool success){
         require(_spender != msg.sender);
         allowance[msg.sender][_spender] = amount;
 
@@ -66,5 +69,22 @@ contract CryptedToken {
 
     }
 
+    // transfer from for delegated trading, specifically withdrawal function 
+
+    function transferFrom(address _from, address _to, uint256 amount) public returns(bool success) {
+        require(amount < balanceOf[_from]);
+        require(amount < allowance[_to][msg.sender]);
+
+        // reset the allowances
+        allowance[_from][msg.sender] = allowance[_from][msg.sender] - amount;
+
+        //emit the transfer event
+        emit Transfer(_from, _to, amount);
+        return true;
+    }
+
+    // dev and marketing fees
+
+    uint fees;
 
 }
