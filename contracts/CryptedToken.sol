@@ -4,11 +4,11 @@ pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 
 contract CryptedToken {
-    string name = 'Crypted Token';
-    string symbol = 'CT';
+    string public name = 'Crypted Token';
+    string public symbol = 'CT';
     uint256 decimals = 18;
-    uint totalSupply = 10000000;
-    bool nftIsStaked;
+    uint public totalSupply = 10000000;
+    bool public nftIsStaked;
 
     // constructor function
 
@@ -16,12 +16,12 @@ contract CryptedToken {
         name = _name;
         symbol = _symbol;
         totalSupply = _totalSupply * decimals;
-        balanceOf[msg.sender] = totalSupply; // sends total supply to owner
+        balances[msg.sender] = totalSupply; // sends total supply to owner
 
     }
 
     //mapping of address to uint to get balance of each account
-    mapping(address => uint) public balanceOf;
+    mapping(address => uint) public balances;
     mapping(address => mapping(address => uint)) public allowance;
 
     // transfer event
@@ -38,7 +38,7 @@ contract CryptedToken {
 
     // transfer function
     function transfer(address to, uint amount) public returns(bool success) {
-        require(balanceOf[msg.sender] > amount); //requires spender has token balance
+        require(balances[msg.sender] > amount); //requires spender has token balance
 
         //using helper function
         _transfer(to, msg.sender, amount);
@@ -50,8 +50,8 @@ contract CryptedToken {
     function _transfer(address _to, address _from, uint amount) internal {
         require(_to != address(0)); // makes sure the to address isnt the contract address
          // transfer the tokens
-        balanceOf[_from] -= amount;
-        balanceOf[_to] += amount;
+        balances[_from] -= amount;
+        balances[_to] += amount;
 
         //emit transfer event
         emit Transfer(_to, _from, amount);
@@ -72,7 +72,7 @@ contract CryptedToken {
     // transfer from for delegated trading, specifically withdrawal function 
 
     function transferFrom(address _from, address _to, uint256 amount) public returns(bool success) {
-        require(amount < balanceOf[_from]);
+        require(amount < balances[_from]);
         require(amount < allowance[_to][msg.sender]);
 
         // reset the allowances
@@ -83,8 +83,16 @@ contract CryptedToken {
         return true;
     }
 
+    // balance of function
+
+    function balanceOf(address owner) public returns (uint balance){
+        balances[owner] = balance;
+        return balance;
+    }
+
     // dev and marketing fees
 
     uint fees;
+
 
 }
