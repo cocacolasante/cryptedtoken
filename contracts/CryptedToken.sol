@@ -85,10 +85,9 @@ contract CryptedToken {
 
     // balance of function
 
-    function balanceOf(address owner) public returns (uint balance){
-        balances[owner] = balance;
-        return balance;
-    }
+    function balanceOf(address owner) public view returns (uint){
+        return balances[owner];
+    } 
 
     // dev and marketing fees
 
