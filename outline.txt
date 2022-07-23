@@ -1,0 +1,73 @@
+Crypted Coders (working name)
+
+Idea: open source blockchain coding community where nft holders are able to contribute to future development and additions with funds being redistributed throughout the community, the more developers and marketing, the more we all make. Community driven coders focused on developing the next internet together. 
+
+Goal: develop the new internet together through group driven projects. Marketing, sales, coding, and more welcome. 
+
+Target audience: looking for those who can contribute to and add on to existing and future projects whether that be through coding, sales, marketing, ideas, housekeeping items, assistant work, managing discord, etc
+
+Token:
+Name: Crypted Coders Crypto
+Symbol: CCC
+Total supply: 10,000,000 
+Basic functions
+Call name
+Balance
+Symbol
+Contract address
+Contract balance
+Functions
+Staking
+Unstaking
+Transfer
+Transfer From
+Selling
+minting(via nft staking)
+Redeeming tokens to upgrade nft
+Airdrop function
+Selling of tokens to provide funding for projects
+
+
+
+NFT
+Total supply: 1000
+Basic functions
+Name
+Traits
+Transfer
+Functions
+Staking
+Unstaking
+Earning/minting tokens
+Upgradable via purchase with tokens or eth
+70% to token liquidity pool
+25% marketing
+Royalties: 8% on secondary market {split via same split as initial funds}
+Stake nft to earn crypted token
+Governance Token
+1000 total supply
+Stake crypted token to earn governance
+Governance is used to vote for funding of projects etc
+
+
+Voting 
+Community submits projects
+Monthly meetings held to vote on new projects
+Breakout teams to work on different projects
+Community supported funding of projects
+
+Benefits
+Projects deployed and profits split with group of developers and community
+Building the new internet together
+Get funding for projects
+Build portfolio
+Network
+Be a part of a community
+
+Community
+Discord
+Telegram
+Twitter
+Github
+Website
+Decentralized social media website where we can post messages/updates on the blockchain (great future project idea for the group)
