@@ -67,7 +67,7 @@ contract CryptedToken {
 
 
         //emit transfer event
-        emit Transfer(_to, _from, amount);
+        emit Transfer(_from, _to, amount);
 
     }
 
